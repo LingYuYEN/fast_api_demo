@@ -11,7 +11,8 @@ app.debug = True
 origins = [
     "http://localhost",
     "http://localhost:80",
-    "http://localhost:8080"
+    "http://localhost:8080",
+    "http://103.3.63.116/RepairSystem/"
 ]
 
 app.add_middleware(
@@ -385,4 +386,4 @@ def put_repair_info_end_time(
 
 
 if __name__ == '__main__':
-    uvicorn.run('main:app', host="127.0.0.1", port=5000, log_level="info", reload=True, debug=True, workers=1)
+    uvicorn.run('main:app', host="0.0.0.0", port=5000, log_level="info", reload=True, debug=True, workers=1)
