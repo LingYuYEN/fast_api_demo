@@ -28,6 +28,11 @@ class TownshipInfo:
         self.school = school
 
 
+class Login(BaseModel):
+    username: str
+    password: str
+
+
 class RepairRecord(BaseModel):
     id: int
     record_time: str
@@ -281,13 +286,17 @@ repair_infos.append(
 # ]
 
 
-@app.get("/login")
-def get_login(
-        username: str,
-        password: str
+@app.post("/login")
+def post_login(
+        login: Login
+        # username: str,
+        # password: str
 ):
     # global user_account_array
     token = ''
+
+    username = login.username
+    password = login.password
 
     for member in member_array:
         if username == member['account'] and password == member['password']:
