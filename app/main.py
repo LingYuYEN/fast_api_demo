@@ -300,12 +300,11 @@ def post_login(
 
     for member in member_array:
         if username == member['account'] and password == member['password']:
-            token = '我取得 token'
             return {'別名': member['alias'], '權限': member['priority']}
             break
         else:
             token = '未取得 token'
-    return token
+    return {'token: ': token}
 
 
 @app.get("/repair_infos")
@@ -384,4 +383,4 @@ def put_repair_info_end_time(
 
 
 if __name__ == '__main__':
-    uvicorn.run('main:app', host="0.0.0.0", port=5000, log_level="info", reload=True, debug=True, workers=1)
+    uvicorn.run('main:app', host="127.0.0.1", port=5000, log_level="info", reload=True, debug=True, workers=1)
