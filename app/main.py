@@ -287,7 +287,7 @@ repair_infos.append(
 
 
 @app.post("/login")
-def post_login(
+async def post_login(
         login: Login
         # username: str,
         # password: str
@@ -300,7 +300,7 @@ def post_login(
 
     for member in member_array:
         if username == member['account'] and password == member['password']:
-            return {'別名': member['alias'], '權限': member['priority']}
+            return {'alias': member['alias'], 'priority': member['priority']}
             break
         else:
             token = '未取得 token'
