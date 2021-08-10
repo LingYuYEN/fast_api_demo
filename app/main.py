@@ -204,93 +204,53 @@ repair_infos = []
 # repair_record_id = 1
 repair_records = []
 
-repair_infos.append(
-    RepairInfo(
-        id=1,
-        school='楓港國小',
-        name='網管',
-        tel='08-7654321#12',
-        device_type='宏碁老師端電腦',
-        repair_description='office 無法使用',
-        start_time='2021/7/28 上午8:21:56',
-        end_time=None,
-        status='未接案',
-        repair_record=None
-    )
-)
-repair_infos.append(
-    RepairInfo(
-        id=2,
-        school='枋寮高中',
-        name='設備組長',
-        tel='08-7654321#12',
-        device_type='宏碁螢幕顯示器',
-        repair_description='螢幕時好時壞',
-        start_time='2021/7/29 上午10:43:50',
-        end_time=None,
-        status='未接案',
-        repair_record=None
-    )
-)
-repair_infos.append(
-    RepairInfo(
-        id=3,
-        school='丹路國小',
-        name='黃老師',
-        tel='0922222222',
-        device_type='宏碁學生端電腦',
-        repair_description='疑似中毒',
-        start_time='2021/7/30 上午7:30:30',
-        end_time=None,
-        status='未接案',
-        repair_record=None
-    )
-)
-# repair_infos = [
-#     {
-#         "id": 1,
-#         "school": "楓港國小",
-#         "name": "網管",
-#         "tel": "08-7654321#12",
-#         "device_type": "邊際交換器(ES)",
-#         "repair_description": "部分網點無法上網",
-#         "start_time": "2021/7/28 上午8:21:56",
-#         "end_time": None,
-#         "status": "未接案",
-#         "repair_record": None
-#     },
-#     {
-#         "id": 2,
-#         "school": "枋寮高中",
-#         "name": "設備組長",
-#         "tel": "0911111111",
-#         "device_type": "出口閘道器",
-#         "repair_description": "我要新增VLAN",
-#         "start_time": "2021/7/29 上午10:43:50",
-#         "end_time": None,
-#         "status": "未接案",
-#         "repair_record": None
-#     },
-#     {
-#         "id": 3,
-#         "school": "丹路國小",
-#         "name": "黃老師",
-#         "tel": "0922222222",
-#         "device_type": "網路儲存設備(NAS)",
-#         "repair_description": "忘記帳密",
-#         "start_time": "2021/7/30 上午7:30:30",
-#         "end_time": None,
-#         "status": "未接案",
-#         "repair_record": None
-#     }
-# ]
+# repair_infos.append(
+#     RepairInfo(
+#         id=1,
+#         school='楓港國小',
+#         name='網管',
+#         tel='08-7654321#12',
+#         device_type='宏碁老師端電腦',
+#         repair_description='office 無法使用',
+#         start_time='2021/7/28 上午8:21:56',
+#         end_time=None,
+#         status='未接案',
+#         repair_record=None
+#     )
+# )
+# repair_infos.append(
+#     RepairInfo(
+#         id=2,
+#         school='枋寮高中',
+#         name='設備組長',
+#         tel='08-7654321#12',
+#         device_type='宏碁螢幕顯示器',
+#         repair_description='螢幕時好時壞',
+#         start_time='2021/7/29 上午10:43:50',
+#         end_time=None,
+#         status='未接案',
+#         repair_record=None
+#     )
+# )
+# repair_infos.append(
+#     RepairInfo(
+#         id=3,
+#         school='丹路國小',
+#         name='黃老師',
+#         tel='0922222222',
+#         device_type='宏碁學生端電腦',
+#         repair_description='疑似中毒',
+#         start_time='2021/7/30 上午7:30:30',
+#         end_time=None,
+#         status='未接案',
+#         repair_record=None
+#     )
+# )
 
 
 @app.post("/login")
 async def post_login(
         login: Login
-        # username: str,
-        # password: str
 ):
     # global user_account_array
     token = ''
