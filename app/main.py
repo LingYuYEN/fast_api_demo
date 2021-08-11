@@ -249,7 +249,7 @@ repair_records = []
 
 
 @app.post("/login")
-async def post_login(
+def post_login(
         login: Login
 ):
     # global user_account_array
@@ -268,19 +268,19 @@ async def post_login(
 
 
 @app.get("/repair_infos")
-async def get_repair_infos():
+def get_repair_infos():
     return repair_infos
 
 
 @app.get("/repair_infos/{selected_id}")
-async def get_selected_info(
+def get_selected_info(
         selected_id: int
 ):
     return repair_infos[selected_id - 1]
 
 
 @app.post("/repair_infos")
-async def post_repair_info(
+def post_repair_info(
         repair_info: RepairInfo
 ):
     # global repair_id
@@ -298,7 +298,7 @@ async def post_repair_info(
 
 
 @app.put("/repair_infos/{selected_id}")
-async def put_repair_info(
+def put_repair_info(
         selected_id: int,
         repair_record: RepairRecord
 ):
@@ -323,7 +323,7 @@ async def put_repair_info(
 
 
 @app.put("/repair_infos/{selected_id}/detail")
-async def put_repair_info(
+def put_repair_info(
         selected_id: int,
         repair_status: str
 ):
@@ -333,7 +333,7 @@ async def put_repair_info(
 
 
 @app.put("/repair_infos/{selected_id}/end_time")
-async def put_repair_info_end_time(
+def put_repair_info_end_time(
         selected_id: int,
         end_time: str
 ):
