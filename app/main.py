@@ -280,12 +280,12 @@ def get_selected_info(
 
 
 @app.post("/repair_infos")
-def post_repair_info(
+async def post_repair_info(
         repair_info: RepairInfo
 ):
     # global repair_id
     global repair_infos
-    repair_infos_len: int
+    await repair_infos_len: int
 
     if repair_infos is None:
         repair_infos_len = 0
