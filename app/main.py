@@ -285,7 +285,7 @@ async def post_repair_info(
 ):
     # global repair_id
     global repair_infos
-    await repair_infos_len: int
+    repair_infos_len: int
 
     if repair_infos is None:
         repair_infos_len = 0
