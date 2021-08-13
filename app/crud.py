@@ -9,15 +9,15 @@ repair_info_key_arr = ['id', 'school', 'name', 'tel', 'device_type', 'repair_des
 def crud_get_repair_info_db():
     # 與 db_file 建立連結
     conn = sqlite3.connect(db_file)
-    # cursor_arr = conn.execute('select * from repair_info;')
     conn.row_factory = sqlite3.Row  # This enables column access by name: row['column_name']
     db = conn.cursor()
-    rows = db.execute('''
-        SELECT * from repair_info
-        ''').fetchall()
+    cursor_arr = conn.execute('select * from repair_info;').fetchall()
+    # rows = db.execute('''
+    #     SELECT * from repair_info
+    #     ''').fetchall()
     conn.commit()
     conn.close()
-    return rows
+    return cursor_arr
 
 
 def crud_post_repair_info_db(post_school, post_name, post_tel, post_device_type, post_repair_description, post_start_time, post_status):
