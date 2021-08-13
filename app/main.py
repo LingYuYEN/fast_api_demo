@@ -1,9 +1,13 @@
 from typing import Optional, List
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends, HTTPException, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 from pydantic import BaseModel
 import datetime
+import crud
+import access_jsonfile
+import sqlite3
+
 
 app = FastAPI()
 
@@ -200,9 +204,10 @@ def get_user_from_township(
 
 
 # repair_id = 4
-repair_infos = []
 # repair_record_id = 1
+repair_infos = []
 repair_records = []
+
 
 # repair_infos.append(
 #     RepairInfo(
@@ -268,8 +273,9 @@ def post_login(
 
 
 @app.get("/repair_infos")
-def get_repair_infos():
-    return repair_infos
+async def get_repair_infos():
+    return crud.crud_get_repair_info_db()
+    # return repair_infos
 
 
 @app.get("/repair_infos/{selected_id}")
@@ -283,7 +289,6 @@ def get_selected_info(
 async def post_repair_info(
         repair_info: RepairInfo
 ):
-    # global repair_id
     global repair_infos
     repair_infos_len: int
 
@@ -292,8 +297,17 @@ async def post_repair_info(
     else:
         repair_infos_len = len(repair_infos)
     repair_info.id = repair_infos_len + 1
-    # repair_id += 1
     repair_infos.append(repair_info)
+    crud.crud_post_repair_info_db(
+        repair_info.school,
+        repair_info.name,
+        repair_info.tel,
+        repair_info.device_type,
+        repair_info.repair_description,
+        repair_info.start_time,
+        repair_info.status
+    )
+    # access_jsonfile.write_jsonfile(repair_info.dict())
     return repair_info
 
 
