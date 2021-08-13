@@ -1,12 +1,10 @@
 from typing import Optional, List
-from fastapi import FastAPI, Depends, HTTPException, Request, Response
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 from pydantic import BaseModel
 import datetime
 import crud
-import access_jsonfile
-import sqlite3
 
 
 app = FastAPI()

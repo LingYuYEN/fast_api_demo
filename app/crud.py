@@ -1,5 +1,4 @@
 import sqlite3
-import json
 
 # 定義資料庫位置
 db_file = 'fastapi_db.db'

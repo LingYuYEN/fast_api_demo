@@ -1,4 +1,3 @@
-from typing import List
 import json
 from pydantic import BaseModel
 import os
