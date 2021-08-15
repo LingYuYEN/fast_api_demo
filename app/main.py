@@ -5,6 +5,7 @@ import uvicorn
 from pydantic import BaseModel
 import datetime
 import crud
+import json
 
 
 app = FastAPI()
@@ -275,7 +276,8 @@ def post_login(
 @app.get("/repair_infos")
 async def get_repair_infos():
     # return crud.crud_get_repair_info_db()
-    return repair_infos
+    json_string = json.dumps([ob.__dict__ for ob in repair_infos])
+    return json_string
 
 
 @app.get("/repair_infos/{selected_id}")
