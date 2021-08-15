@@ -274,8 +274,8 @@ def post_login(
 
 @app.get("/repair_infos")
 async def get_repair_infos():
-    return crud.crud_get_repair_info_db()
-    # return repair_infos
+    # return crud.crud_get_repair_info_db()
+    return repair_infos
 
 
 @app.get("/repair_infos/{selected_id}")
