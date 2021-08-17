@@ -13,7 +13,7 @@ app.debug = True
 origins = [
     "http://localhost",
     "http://localhost:8080",
-    "http://175.180.137.130"
+    "http://103.3.63.116"
 ]
 
 app.add_middleware(

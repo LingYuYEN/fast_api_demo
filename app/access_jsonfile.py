@@ -1,7 +1,6 @@
 import json
 import os
 
-# json_object_list = []
 dict_list = []
 
 
