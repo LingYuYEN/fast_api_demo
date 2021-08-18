@@ -284,7 +284,11 @@ async def get_repair_infos():
 def get_selected_info(
         selected_id: int
 ):
-    return repair_infos[selected_id - 1]
+    access_jsonfile.load_jsonfile()
+    for data in access_jsonfile.load_jsonfile():
+        if data['id'] == selected_id:
+            return data
+    return None
 
 
 @app.post("/repair_infos")
