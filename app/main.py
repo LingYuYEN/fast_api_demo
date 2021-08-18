@@ -294,11 +294,15 @@ async def post_repair_info(
     repair_info_dict = repair_info.dict()
     global repair_infos
     repair_infos_len: int
-
-    if repair_infos is None:
+    #
+    # if repair_infos is None:
+    #     repair_infos_len = 0
+    # else:
+    #     repair_infos_len = len(repair_infos)
+    if access_jsonfile.load_jsonfile() is None:
         repair_infos_len = 0
     else:
-        repair_infos_len = len(repair_infos)
+        repair_infos_len = len(access_jsonfile.load_jsonfile())
     repair_info_dict['id'] = repair_infos_len + 1
     repair_infos.append(repair_info_dict)
     access_jsonfile.write_jsonfile(repair_info_dict)

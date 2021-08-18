@@ -11,7 +11,6 @@ def write_jsonfile(dic):
             dic_list.append(dic)  # 將 dic append 到 dic_list
             jsonfile_list.seek(0)  # 指定光標位置，避免將 list 加到原本 jsonfile_list 後
             json_obj_list = json.dumps(dic_list, indent=4)  # 再將 dic_list 轉成 json
-            print(json_obj_list)
             jsonfile_list.write(json_obj_list)
             jsonfile_list.close()
     else:
@@ -23,9 +22,12 @@ def write_jsonfile(dic):
 
 
 def load_jsonfile():
-    with open('jsonfile.json', 'r') as jsonfile_list:
-        dict_data_list = json.load(jsonfile_list)
-        return dict_data_list
+    if os.path.exists('jsonfile.json'):
+        with open('jsonfile.json', 'r') as jsonfile_list:
+            dict_data_list = json.load(jsonfile_list)  # 轉換成 dic_list
+            return dict_data_list
+    else:
+        return []
 
 
 def delete_jsonfile():
