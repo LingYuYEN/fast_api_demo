@@ -1,9 +1,8 @@
 import json
 import os
-from pathlib import Path
 
 dict_list = []
-jsonfile_name = Path('fast_api_demo/jsonfile.json')
+jsonfile_name = "./jsonfile.json"
 
 
 def write_jsonfile(dic):
