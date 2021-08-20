@@ -11,7 +11,6 @@ print("abspath.: ", os.path.abspath("."))
 print("abspath..: ", os.path.abspath(".."))
 print("abspath./: ", os.path.abspath("./"))
 print("abspath../: ", os.path.abspath("../"))
-print("os.path: ", os.path())
 print(jsonfile_name, os.path.abspath(jsonfile_name))
 
 cwd = os.getcwd()
