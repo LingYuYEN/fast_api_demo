@@ -6,9 +6,9 @@ repair_record_dict_list = []
 jsonfile_name = "./root/fast_api_demo/jsonfile.json"
 # jsonfile_name = "jsonfile.json"
 
-exe = 'jsonfile.json'
+exe = '.'
 # if the exe just in current dir
-print(os.path.abspath(exe))
+print("abspath: ", os.path.abspath(exe))
 # output
 # D:\python\note\something.exe
 # if we need find it first
