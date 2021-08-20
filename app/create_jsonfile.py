@@ -12,3 +12,6 @@ def creat_jsonfile():
         with open(jsonfile_name, 'w') as jsonfile:
             jsonfile.write()
             jsonfile.close()
+
+
+creat_jsonfile()
