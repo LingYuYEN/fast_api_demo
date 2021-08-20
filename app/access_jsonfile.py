@@ -23,7 +23,7 @@ def write_jsonfile(dic):
         print(os.path.abspath(jsonfile_name))
         dict_list.append(dic)  # 先將 dict 加入陣列
         json_object_list = json.dumps(dict_list, indent=4)  # 再將 dict_list 轉成 json
-        jsonfile.write(json_object_list)  # 並寫入
+        jsonfile.write('{"a": "a"}')  # 並寫入
         jsonfile.close()
 
     # if os.path.exists(jsonfile_name):
