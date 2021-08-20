@@ -3,7 +3,7 @@ import os
 
 dict_list = []
 repair_record_dict_list = []
-jsonfile_name = "jsonfile.json"
+jsonfile_name = "/root/fast_api_demo/jsonfile.json"
 
 exe = 'jsonfile.json'
 # if the exe just in current dir
