@@ -10,7 +10,7 @@ jsonfile_name = "./jsonfile.json"
 print("abspath.: ", os.path.abspath("."))
 print("abspath..: ", os.path.abspath(".."))
 print("abspath./: ", os.path.abspath("./"))
-
+print(jsonfile_name, os.path.abspath(jsonfile_name))
 
 # output
 # D:\python\note\something.exe
