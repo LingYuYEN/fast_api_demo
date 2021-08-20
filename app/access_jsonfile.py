@@ -15,10 +15,10 @@ print("abspath./: ", os.path.abspath("./"))
 # output
 # D:\python\note\something.exe
 # if we need find it first
-for root, dirs, files in os.walk(r'D:\python'):
-    for name in files:
-        if name == exe:
-            print(os.path.abspath(os.path.join(root, name)))
+# for root, dirs, files in os.walk(r'D:\python'):
+#     for name in files:
+#         if name == exe:
+#             print(os.path.abspath(os.path.join(root, name)))
 
 
 def write_jsonfile(dic):
