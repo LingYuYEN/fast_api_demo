@@ -19,6 +19,7 @@ print("Current working directory:", cwd)
 
 def write_jsonfile(dic):
     global dict_list
+    print(dic)
     if os.path.exists(jsonfile_name):
         return
     else:
