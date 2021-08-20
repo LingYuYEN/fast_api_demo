@@ -16,14 +16,6 @@ print(jsonfile_name, os.path.abspath(jsonfile_name))
 cwd = os.getcwd()
 print("Current working directory:", cwd)
 
-# output
-# D:\python\note\something.exe
-# if we need find it first
-# for root, dirs, files in os.walk(r'D:\python'):
-#     for name in files:
-#         if name == exe:
-#             print(os.path.abspath(os.path.join(root, name)))
-
 
 def write_jsonfile(dic):
     global dict_list
@@ -48,6 +40,7 @@ def load_jsonfile():
     if os.path.exists(jsonfile_name):
         with open(jsonfile_name, 'r') as jsonfile_list:
             dict_data_list = json.load(jsonfile_list)  # 轉換成 dic_list
+            jsonfile_list.close()
             return dict_data_list
     else:
         return []
