@@ -17,9 +17,9 @@ cwd = os.getcwd()
 print("Current working directory:", cwd)
 
 
-def write_jsonfile(dic):
+def write_jsonfile():
     global dict_list
-    print(dic)
+    # print(dic)
     if os.path.exists(jsonfile_name):
         return
     else:
