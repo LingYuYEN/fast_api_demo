@@ -5,8 +5,6 @@ dict_list = []
 repair_record_dict_list = []
 jsonfile_name = "jsonfile.json"
 
-print(os.getcwd())
-
 exe = 'jsonfile.json'
 # if the exe just in current dir
 print(os.path.abspath(exe))
@@ -17,16 +15,6 @@ for root, dirs, files in os.walk(r'D:\python'):
     for name in files:
         if name == exe:
             print(os.path.abspath(os.path.join(root, name)))
-# path = "app"
-# print(os.listdir(os.curdir))
-# print(os.listdir(path))
-# path_app = "app"
-# path_fastapi_api_demo = "../fast_api_demo"
-#
-# path_path_app = os.listdir(path_app)
-# print("path_path_app: ", path_path_app)
-# path_path_fastapi_api_demo = os.listdir(path_fastapi_api_demo)
-# print("path_path_fastapi_api_demo: ", path_path_fastapi_api_demo)
 
 
 def write_jsonfile(dic):
