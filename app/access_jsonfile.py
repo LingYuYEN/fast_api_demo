@@ -30,6 +30,7 @@ def write_jsonfile(dic):
             jsonfile_list.close()
     else:
         with open(jsonfile_name, 'w') as jsonfile:  # 如果沒有 json 檔案，就新增
+            print(os.path.abspath(jsonfile_name))
             dict_list.append(dic)  # 先將 dict 加入陣列
             json_object_list = json.dumps(dict_list, indent=4)  # 再將 dict_list 轉成 json
             jsonfile.write(json_object_list)  # 並寫入
