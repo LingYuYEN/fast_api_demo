@@ -19,12 +19,12 @@ print("Current working directory:", cwd)
 
 def write_jsonfile(dic):
     global dict_list
-    with open(jsonfile_name, 'w') as jsonfile:  # 如果沒有 json 檔案，就新增
-        print(os.path.abspath(jsonfile_name))
-        dict_list.append(dic)  # 先將 dict 加入陣列
-        json_object_list = json.dumps(dict_list, indent=4)  # 再將 dict_list 轉成 json
-        jsonfile.write('{"a": "a"}')  # 並寫入
-        jsonfile.close()
+    if os.path.exists(jsonfile_name):
+        return
+    else:
+        with open(jsonfile_name, 'w') as jsonfile:
+            jsonfile.write()
+            jsonfile.close()
 
     # if os.path.exists(jsonfile_name):
     #     with open(jsonfile_name, 'r+') as jsonfile_list:  # 如果 json 檔案存在，就載入
