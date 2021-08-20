@@ -298,11 +298,6 @@ async def post_repair_info(
     repair_info_dict = repair_info.dict()
     global repair_infos
     repair_infos_len: int
-    #
-    # if repair_infos is None:
-    #     repair_infos_len = 0
-    # else:
-    #     repair_infos_len = len(repair_infos)
     if access_jsonfile.load_jsonfile() is None:
         repair_infos_len = 0
     else:
@@ -319,21 +314,30 @@ def put_repair_info(
         repair_record: RepairRecord
 ):
     global repair_infos
-    repair_record_len: int
-    # 取得欲 put 的報修資訊
-    repair_info = repair_infos[selected_id - 1]
-
-    # 透過以下判斷，若 repair_info.repair_record 未曾給值，將為 NULL
-    if repair_info.repair_record is None:
-        # NULL 情況下，repair_record 會取不到 length，故於此建立 list
+    repair_record_dict = repair_record.dict()
+    repair_infos = access_jsonfile.load_jsonfile()
+    if repair_infos[selected_id - 1]['repair_record'] is None:
         repair_record_len = 0
-        repair_info.repair_record = []
     else:
-        # 如已有值(已是 list)，則可取得筆數
-        repair_record_len = len(repair_info.repair_record)
+        repair_record_len = len(repair_infos[selected_id - 1]['repair_record'])
+    repair_record_dict['id'] = repair_record_len + 1
+    access_jsonfile.put_jsonfile(selected_id, repair_record_dict)
 
-    repair_record.id = repair_record_len + 1
-    repair_info.repair_record.append(repair_record)
+    # repair_record_len: int
+    # # 取得欲 put 的報修資訊
+    # repair_info = repair_infos[selected_id - 1]
+    #
+    # # 透過以下判斷，若 repair_info.repair_record 未曾給值，將為 NULL
+    # if repair_info.repair_record is None:
+    #     # NULL 情況下，repair_record 會取不到 length，故於此建立 list
+    #     repair_record_len = 0
+    #     repair_info.repair_record = []
+    # else:
+    #     # 如已有值(已是 list)，則可取得筆數
+    #     repair_record_len = len(repair_info.repair_record)
+    #
+    # repair_record.id = repair_record_len + 1
+    # repair_info.repair_record.append(repair_record)
 
     return {'message': 'Put has been updated successfully'}
 
