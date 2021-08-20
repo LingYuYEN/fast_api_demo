@@ -4,6 +4,8 @@ import os
 dict_list = []
 repair_record_dict_list = []
 jsonfile_name = "./jsonfile.json"
+
+print(os.listdir(os.curdir))
 # path_app = "app"
 # path_fastapi_api_demo = "../fast_api_demo"
 #
