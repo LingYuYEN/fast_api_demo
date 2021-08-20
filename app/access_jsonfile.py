@@ -3,7 +3,7 @@ import os
 
 dict_list = []
 repair_record_dict_list = []
-jsonfile_name = "../jsonfile.json"
+jsonfile_name = "./jsonfile.json"
 # jsonfile_name = "jsonfile.json"
 
 # if the exe just in current dir
@@ -11,6 +11,8 @@ print("abspath.: ", os.path.abspath("."))
 print("abspath..: ", os.path.abspath(".."))
 print("abspath./: ", os.path.abspath("./"))
 print("abspath../: ", os.path.abspath("../"))
+print("os.path: ", os.path())
+
 print(jsonfile_name, os.path.abspath(jsonfile_name))
 
 # output
