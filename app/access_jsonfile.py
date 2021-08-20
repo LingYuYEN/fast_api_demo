@@ -4,13 +4,13 @@ import os
 dict_list = []
 repair_record_dict_list = []
 jsonfile_name = "./jsonfile.json"
-path_app = "app"
-path_fastapi_api_demo = "../fast_api_demo"
-
-path_path_app = os.listdir(path_app)
-print("path_path_app: ", path_path_app)
-path_path_fastapi_api_demo = os.listdir(path_fastapi_api_demo)
-print("path_path_fastapi_api_demo: ", path_path_fastapi_api_demo)
+# path_app = "app"
+# path_fastapi_api_demo = "../fast_api_demo"
+#
+# path_path_app = os.listdir(path_app)
+# print("path_path_app: ", path_path_app)
+# path_path_fastapi_api_demo = os.listdir(path_fastapi_api_demo)
+# print("path_path_fastapi_api_demo: ", path_path_fastapi_api_demo)
 
 
 def write_jsonfile(dic):
