@@ -1,2 +1,5 @@
 /app/*.json
 *.json
+/app/*.db
+*.db
+.idea
