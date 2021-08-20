@@ -5,10 +5,12 @@ import uvicorn
 from pydantic import BaseModel
 import datetime
 import access_jsonfile
+import create_jsonfile
 
 
 app = FastAPI()
 
+create_jsonfile.creat_jsonfile()
 app.debug = True
 # origins = [
 #     "http://localhost",
