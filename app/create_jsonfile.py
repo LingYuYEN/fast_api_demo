@@ -10,7 +10,7 @@ def creat_jsonfile():
         return
     else:
         with open(jsonfile_name, 'w') as jsonfile:
-            jsonfile.write()
+            jsonfile.write("{}")
             jsonfile.close()
 
 
