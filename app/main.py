@@ -306,7 +306,7 @@ async def post_repair_info(
         repair_infos_len = len(access_jsonfile.load_jsonfile())
     repair_info_dict['id'] = repair_infos_len + 1
     repair_infos.append(repair_info_dict)
-    await access_jsonfile.write_jsonfile(repair_info_dict)
+    access_jsonfile.write_jsonfile(repair_info_dict)
     return repair_info_dict
 
 
