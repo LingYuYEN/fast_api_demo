@@ -5,6 +5,8 @@ import uvicorn
 from pydantic import BaseModel
 import datetime
 import access_jsonfile
+from fastapi.encoders import jsonable_encoder
+
 
 app = FastAPI()
 
@@ -307,7 +309,10 @@ async def post_repair_info(
     repair_info_dict['id'] = repair_infos_len + 1
     repair_infos.append(repair_info_dict)
     access_jsonfile.write_jsonfile(repair_info_dict)
-    return repair_info_dict
+    # return repair_info_dict
+    return access_jsonfile.load_jsonfile()
+
+repair_record_dict_list = []
 
 
 @app.put("/repair_infos/{selected_id}")
@@ -316,31 +321,10 @@ def put_repair_info(
         repair_record: RepairRecord
 ):
     global repair_infos
-    repair_record_dict = repair_record.dict()
     repair_infos = access_jsonfile.load_jsonfile()
-    if repair_infos[selected_id - 1]['repair_record'] is None:
-        repair_record_len = 0
-    else:
-        repair_record_len = len(repair_infos[selected_id - 1]['repair_record'])
-    repair_record_dict['id'] = repair_record_len + 1
+    repair_record_dict = repair_record.dict()
+
     access_jsonfile.put_jsonfile(selected_id, repair_record_dict)
-
-    # repair_record_len: int
-    # # 取得欲 put 的報修資訊
-    # repair_info = repair_infos[selected_id - 1]
-    #
-    # # 透過以下判斷，若 repair_info.repair_record 未曾給值，將為 NULL
-    # if repair_info.repair_record is None:
-    #     # NULL 情況下，repair_record 會取不到 length，故於此建立 list
-    #     repair_record_len = 0
-    #     repair_info.repair_record = []
-    # else:
-    #     # 如已有值(已是 list)，則可取得筆數
-    #     repair_record_len = len(repair_info.repair_record)
-    #
-    # repair_record.id = repair_record_len + 1
-    # repair_info.repair_record.append(repair_record)
-
     return {'message': 'Put has been updated successfully'}
 
 
@@ -349,8 +333,7 @@ def put_repair_info(
         selected_id: int,
         repair_status: str
 ):
-    repair_info = repair_infos[selected_id - 1]
-    repair_info.status = repair_status
+    access_jsonfile.put_status_jsonfile(selected_id, repair_status)
     return {'message': 'Put has been updated successfully'}
 
 

@@ -1,25 +1,25 @@
 import json
 import os
 
-dict_list = []
-repair_record_dict_list = []
+# dict_list = []
+# repair_record_dict_list = []
 jsonfile_name = "./jsonfile.json"
 # jsonfile_name = "jsonfile.json"
 
 # if the exe just in current dir
-print("abspath.: ", os.path.abspath("."))
-print("abspath..: ", os.path.abspath(".."))
-print("abspath./: ", os.path.abspath("./"))
-print("abspath../: ", os.path.abspath("../"))
-print(jsonfile_name, os.path.abspath(jsonfile_name))
-
-cwd = os.getcwd()
-print("Current working directory:", cwd)
+# print("abspath.: ", os.path.abspath("."))
+# print("abspath..: ", os.path.abspath(".."))
+# print("abspath./: ", os.path.abspath("./"))
+# print("abspath../: ", os.path.abspath("../"))
+# print(jsonfile_name, os.path.abspath(jsonfile_name))
+#
+# cwd = os.getcwd()
+# print("Current working directory:", cwd)
 
 
 def write_jsonfile(dic):
-    global dict_list
-
+    # global dict_list
+    dict_list = []
     if os.path.exists(jsonfile_name):
         with open(jsonfile_name, 'r+') as jsonfile_list:  # 如果 json 檔案存在，就載入
             dict_list = json.load(jsonfile_list)  # 並轉換成 dic_list
@@ -48,21 +48,34 @@ def load_jsonfile():
 
 
 def put_jsonfile(index, dic):
-    global dict_list
-    global repair_record_dict_list
     with open(jsonfile_name, 'r+') as jsonfile:  # 如果 json 檔案存在，就載入
         dict_list = json.load(jsonfile)
-        if dict_list[index]['repair_record'] is None:
-            dict_list[index]['repair_record'] = repair_record_dict_list.append(dic)
-            json_obj_list = json.dumps(dict_list, indent=4)
-            jsonfile.write(json_obj_list)  # 並寫入
-            jsonfile.close()
+        repair_record_dict_list = dict_list[index - 1]['repair_record']
+
+        if repair_record_dict_list is None:
+            repair_record_len = 0
+            repair_record_dict_list = []
         else:
-            repair_record_dict_list = dict_list[index]['repair_record']
-            repair_record_dict_list.append(dic)
-            json_obj_list = json.dumps(dict_list, indent=4)
-            jsonfile.write(json_obj_list)  # 並寫入
-            jsonfile.close()
+            repair_record_len = len(repair_record_dict_list)
+
+        dic['id'] = repair_record_len + 1
+        repair_record_dict_list.append(dic)
+
+        dict_list[index - 1]['repair_record'] = repair_record_dict_list
+        jsonfile.seek(0)
+        json_obj_list = json.dumps(dict_list, indent=4)
+        jsonfile.write(json_obj_list)  # 並寫入
+        jsonfile.close()
+
+
+def put_status_jsonfile(index, string):
+    with open(jsonfile_name, 'r+') as jsonfile:
+        dict_list = json.load(jsonfile)
+        dict_list[index - 1]['status'] = string
+        jsonfile.seek(0)
+        json_obj_list = json.dumps(dict_list, indent=4)
+        jsonfile.write(json_obj_list)  # 並寫入
+        jsonfile.close()
 
 
 def delete_jsonfile():
