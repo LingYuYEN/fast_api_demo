@@ -62,6 +62,7 @@ def put_jsonfile(index, dic):
         repair_record_dict_list.append(dic)
 
         dict_list[index - 1]['repair_record'] = repair_record_dict_list
+        dict_list[index - 1]['status'] = '處理中'
         jsonfile.seek(0)
         json_obj_list = json.dumps(dict_list, indent=4)
         jsonfile.write(json_obj_list)  # 並寫入
