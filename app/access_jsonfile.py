@@ -79,6 +79,16 @@ def put_status_jsonfile(index, string):
         jsonfile.close()
 
 
+def put_end_time_jsonfile(index, time_str):
+    with open(jsonfile_name, 'r+') as jsonfile:
+        dict_list = json.load(jsonfile)
+        dict_list[index - 1]['end_time'] = time_str
+        jsonfile.seek(0)
+        json_obj_list = json.dumps(dict_list, indent=4)
+        jsonfile.write(json_obj_list)  # 並寫入
+        jsonfile.close()
+
+
 def delete_jsonfile():
     if os.path.exists('jsonfile.json'):
         os.remove('jsonfile.json')

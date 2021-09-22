@@ -342,8 +342,7 @@ def put_repair_info_end_time(
         selected_id: int,
         end_time: str
 ):
-    repair_info = repair_infos[selected_id - 1]
-    repair_info.end_time = end_time
+    access_jsonfile.put_end_time_jsonfile(selected_id, end_time)
     return {'message': 'Put has been updated successfully'}
 
 
