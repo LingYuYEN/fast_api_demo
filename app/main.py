@@ -272,7 +272,7 @@ def post_login(
             return {'alias': member['alias'], 'priority': member['priority']}
             break
         else:
-            token = '未取得 token'
+            token = "未取得 token"
     return {'token: ': token}
 
 
@@ -344,6 +344,18 @@ def put_repair_info_end_time(
 ):
     access_jsonfile.put_end_time_jsonfile(selected_id, end_time)
     return {'message': 'Put has been updated successfully'}
+
+
+@app.post("/repair_infos/change_password")
+def post_change_password(
+        account: str,
+        password: str,
+        new_password: str
+):
+    for member in member_array:
+        if member["account"] == account and member["password"] == password:
+            member["password"] == new_password
+    return {'message': '成功變更'}
 
 
 if __name__ == '__main__':
