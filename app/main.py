@@ -273,7 +273,7 @@ def post_login(
             break
         else:
             token = "未取得 token"
-    return {'token: ': token}
+    return token
 
 
 @app.get("/repair_infos")
