@@ -4,6 +4,7 @@ import os
 # dict_list = []
 # repair_record_dict_list = []
 jsonfile_name = "./jsonfile.json"
+members_jsonfile = "./members.json"
 # jsonfile_name = "jsonfile.json"
 
 # if the exe just in current dir
@@ -12,9 +13,36 @@ jsonfile_name = "./jsonfile.json"
 # print("abspath./: ", os.path.abspath("./"))
 # print("abspath../: ", os.path.abspath("../"))
 # print(jsonfile_name, os.path.abspath(jsonfile_name))
-#
-# cwd = os.getcwd()
-# print("Current working directory:", cwd)
+
+
+def write_members_jsonfile(dic_list):
+    with open(members_jsonfile, 'w') as jsonfile:  # 如果沒有 json 檔案，就新增
+        json_object_list = json.dumps(dic_list, indent=4)
+        jsonfile.write(json_object_list)
+        jsonfile.close()
+        return dic_list
+
+
+def load_members_jsonfile():
+    if os.path.exists(members_jsonfile):
+        with open(members_jsonfile, 'r') as jsonfile_list:
+            dict_data_list = json.load(jsonfile_list)  # 轉換成 dic_list
+            jsonfile_list.close()
+            return dict_data_list
+    else:
+        return []
+
+
+def put_members_jsonfile(index, new_password):
+    if os.path.exists(members_jsonfile):
+        with open(members_jsonfile, 'r+') as jsonfile_list:
+            member_dict_list = json.load(jsonfile_list)  # 轉換成 dic_list
+            member_dict_list[index - 1]["password"] = new_password
+            jsonfile_list.seek(0)
+            json_obj_list = json.dumps(member_dict_list, indent=4)  # 再將 dic_list 轉成 json
+            jsonfile_list.write(json_obj_list)
+            jsonfile_list.close()
+            return member_dict_list[index - 1]
 
 
 def write_jsonfile(dic):
@@ -30,7 +58,6 @@ def write_jsonfile(dic):
             jsonfile_list.close()
     else:
         with open(jsonfile_name, 'w') as jsonfile:  # 如果沒有 json 檔案，就新增
-            print(os.path.abspath(jsonfile_name))
             dict_list.append(dic)  # 先將 dict 加入陣列
             json_object_list = json.dumps(dict_list, indent=4)  # 再將 dict_list 轉成 json
             jsonfile.write(json_object_list)  # 並寫入
@@ -94,3 +121,4 @@ def delete_jsonfile():
         os.remove('jsonfile.json')
     else:
         print('The file does not exist.')
+

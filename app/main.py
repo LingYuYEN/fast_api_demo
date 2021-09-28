@@ -207,54 +207,32 @@ def get_user_from_township(
         return "請選擇正確的鄉鎮市區"
 
 
-# repair_id = 4
-# repair_record_id = 1
 repair_infos = []
 repair_records = []
 
 
-# repair_infos.append(
-#     RepairInfo(
-#         id=1,
-#         school='楓港國小',
-#         name='網管',
-#         tel='08-7654321#12',
-#         device_type='宏碁老師端電腦',
-#         repair_description='office 無法使用',
-#         start_time='2021/7/28 上午8:21:56',
-#         end_time=None,
-#         status='未接案',
-#         repair_record=None
-#     )
-# )
-# repair_infos.append(
-#     RepairInfo(
-#         id=2,
-#         school='枋寮高中',
-#         name='設備組長',
-#         tel='08-7654321#12',
-#         device_type='宏碁螢幕顯示器',
-#         repair_description='螢幕時好時壞',
-#         start_time='2021/7/29 上午10:43:50',
-#         end_time=None,
-#         status='未接案',
-#         repair_record=None
-#     )
-# )
-# repair_infos.append(
-#     RepairInfo(
-#         id=3,
-#         school='丹路國小',
-#         name='黃老師',
-#         tel='0922222222',
-#         device_type='宏碁學生端電腦',
-#         repair_description='疑似中毒',
-#         start_time='2021/7/30 上午7:30:30',
-#         end_time=None,
-#         status='未接案',
-#         repair_record=None
-#     )
-# )
+@app.post("/write_default_members")
+def write_default_members():
+    return access_jsonfile.write_members_jsonfile(member_array)
+
+
+@app.get("/members")
+def get_members():
+    return access_jsonfile.load_members_jsonfile()
+
+
+@app.post("/repair_infos/change_password")
+def post_change_password(
+        account: str,
+        password: str,
+        new_password: str
+):
+    member_list = access_jsonfile.load_members_jsonfile()
+    for member in member_list:
+        if member["account"] == account and member["password"] == password:
+            return access_jsonfile.put_members_jsonfile(member["id"], new_password)
+        else:
+            return
 
 
 @app.post("/login")
@@ -267,7 +245,8 @@ def post_login(
     username = login.username
     password = login.password
 
-    for member in member_array:
+    member_list = access_jsonfile.load_members_jsonfile()
+    for member in member_list:
         if username == member['account'] and password == member['password']:
             return {'alias': member['alias'], 'priority': member['priority']}
             break
@@ -278,9 +257,6 @@ def post_login(
 
 @app.get("/repair_infos")
 async def get_repair_infos():
-    # return crud.crud_get_repair_info_db()
-    # json_string = json.dumps([ob.__dict__ for ob in repair_infos])
-    # return json_string
     return access_jsonfile.load_jsonfile()
 
 
@@ -344,18 +320,6 @@ def put_repair_info_end_time(
 ):
     access_jsonfile.put_end_time_jsonfile(selected_id, end_time)
     return {'message': 'Put has been updated successfully'}
-
-
-@app.post("/repair_infos/change_password")
-def post_change_password(
-        account: str,
-        password: str,
-        new_password: str
-):
-    for member in member_array:
-        if member["account"] == account and member["password"] == password:
-            member["password"] == new_password
-    return {'message': '成功變更'}
 
 
 if __name__ == '__main__':
