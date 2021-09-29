@@ -17,7 +17,7 @@ members_jsonfile = "./members.json"
 
 def write_members_jsonfile(dic_list):
     with open(members_jsonfile, 'w') as jsonfile:  # 如果沒有 json 檔案，就新增
-        json_object_list = json.dumps(dic_list)
+        json_object_list = json.dumps(dic_list, indent=4)
         jsonfile.seek(0)
         jsonfile.write(json_object_list)
         jsonfile.close()
@@ -35,15 +35,22 @@ def load_members_jsonfile():
 
 
 def put_members_jsonfile(index, new_password):
-    if os.path.exists(members_jsonfile):
-        with open(members_jsonfile, 'r+') as jsonfile_list:
-            member_dict_list = json.load(jsonfile_list)  # 轉換成 dic_list
-            member_dict_list[index - 1]["password"] = new_password
-            jsonfile_list.seek(0)
-            json_obj_list = json.dumps(member_dict_list)  # 再將 dic_list 轉成 json
-            jsonfile_list.write(json_obj_list)
-            jsonfile_list.close()
-            return member_dict_list[index - 1]
+    with open(members_jsonfile, 'r') as jsonfile_list:
+        member_dict_list = json.load(jsonfile_list)  # 轉換成 dic_list
+        member_dict_list[index - 1]["password"] = new_password
+
+    with open(members_jsonfile, 'w') as jsonfile:  # 如果沒有 json 檔案，就新增
+        json_object_list = json.dumps(member_dict_list, indent=4)
+        jsonfile.seek(0)
+        jsonfile.write(json_object_list)
+        jsonfile.close()
+        return member_dict_list[index - 1]
+
+    #     jsonfile_list.seek(0)
+    #     json_obj_list = json.dumps(member_dict_list, indent=4)  # 再將 dic_list 轉成 json
+    #     jsonfile_list.write(json_obj_list)
+    #     jsonfile_list.close()
+    #     return member_dict_list[index - 1]
 
 
 def write_jsonfile(dic):
