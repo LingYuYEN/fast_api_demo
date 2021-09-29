@@ -228,12 +228,19 @@ def post_change_password(
         new_password: str
 ):
     member_list = access_jsonfile.load_members_jsonfile()
+    member_register = {}
     for member in member_list:
         if member["account"] == account and member["password"] == password:
-            access_jsonfile.put_members_jsonfile(member["id"], new_password)
-            return {'message': 'Put has been updated successfully'}
+            member_register = member
+            break
         else:
-            return
+            member_register = None
+            # return {'message': 'Put has been updated successfully'}
+
+    if member_register is None:
+        return None
+    else:
+        return access_jsonfile.put_members_jsonfile(member_register["id"], new_password)
 
 
 @app.post("/login")
