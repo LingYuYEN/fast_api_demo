@@ -31,7 +31,7 @@ def load_members_jsonfile():
             jsonfile_list.close()
             return dict_data_list
     else:
-        return []
+        return
 
 
 def put_members_jsonfile(index, new_password):

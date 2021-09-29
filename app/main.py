@@ -240,8 +240,8 @@ def post_change_password(
     if member_register is None:
         return None
     else:
-        return access_jsonfile.put_members_jsonfile(member_register["id"], new_password)
-
+        access_jsonfile.put_members_jsonfile(member_register["id"], new_password)
+        return {'message': 'Put has been updated successfully'}
 
 @app.post("/login")
 def post_login(
