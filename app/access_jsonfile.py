@@ -40,7 +40,7 @@ def put_members_jsonfile(index, new_password):
             member_dict_list = json.load(jsonfile_list)  # 轉換成 dic_list
             member_dict_list[index - 1]["password"] = new_password
             jsonfile_list.seek(0)
-            json_obj_list = json.dumps(member_dict_list, indent=4)  # 再將 dic_list 轉成 json
+            json_obj_list = json.dumps(member_dict_list)  # 再將 dic_list 轉成 json
             jsonfile_list.write(json_obj_list)
             jsonfile_list.close()
             return member_dict_list[index - 1]
