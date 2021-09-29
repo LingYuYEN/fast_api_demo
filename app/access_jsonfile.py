@@ -17,7 +17,8 @@ members_jsonfile = "./members.json"
 
 def write_members_jsonfile(dic_list):
     with open(members_jsonfile, 'w') as jsonfile:  # 如果沒有 json 檔案，就新增
-        json_object_list = json.dumps(dic_list, indent=4)
+        json_object_list = json.dumps(dic_list)
+        jsonfile.seek(0)
         jsonfile.write(json_object_list)
         jsonfile.close()
         return dic_list

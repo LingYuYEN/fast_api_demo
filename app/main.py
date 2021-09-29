@@ -230,7 +230,8 @@ def post_change_password(
     member_list = access_jsonfile.load_members_jsonfile()
     for member in member_list:
         if member["account"] == account and member["password"] == password:
-            return access_jsonfile.put_members_jsonfile(member["id"], new_password)
+            access_jsonfile.put_members_jsonfile(member["id"], new_password)
+            return {'message': 'Put has been updated successfully'}
         else:
             return
 
@@ -248,7 +249,7 @@ def post_login(
     member_list = access_jsonfile.load_members_jsonfile()
     for member in member_list:
         if username == member['account'] and password == member['password']:
-            return {'alias': member['alias'], 'priority': member['priority']}
+            return {'account': member['account'], 'alias': member['alias'], 'priority': member['priority']}
             break
         else:
             token = "未取得 token"
