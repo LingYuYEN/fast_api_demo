@@ -15,13 +15,16 @@ members_jsonfile = "./members.json"
 # print(jsonfile_name, os.path.abspath(jsonfile_name))
 
 
-def write_members_jsonfile(dic_list):
+def write_members_jsonfile(member_model_list):
     with open(members_jsonfile, 'w') as jsonfile:  # 如果沒有 json 檔案，就新增
-        json_object_list = json.dumps(dic_list, indent=4)
-        jsonfile.seek(0)
+        json_dic_list = []
+        for member_model in member_model_list:
+            json_dic_list.append(member_model.dict())
+
+        json_object_list = json.dumps(json_dic_list, indent=4)
         jsonfile.write(json_object_list)
-        jsonfile.close()
-        return dic_list
+        # jsonfile.close()
+        return json_dic_list
 
 
 def load_members_jsonfile():
