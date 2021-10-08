@@ -11,8 +11,8 @@ import os
 
 demo_info = '測試發送 mail json 附件'
 
-jsonfile_name = "/jsonfile.json"
-members_jsonfile = "/members.json"
+jsonfile_name = "../../jsonfile.json"
+members_jsonfile = "../../members.json"
 
 
 # dict_list = []
