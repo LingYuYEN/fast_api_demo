@@ -6,6 +6,10 @@ from pydantic import BaseModel
 import datetime
 import access_jsonfile
 from fastapi.encoders import jsonable_encoder
+import os
+
+# path = "/root/fast_api_demo"
+# print(os.path.abspath(path))
 
 
 app = FastAPI()

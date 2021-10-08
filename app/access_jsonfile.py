@@ -1,13 +1,9 @@
 import json
-import os
-
-print(os.path.getcwd())
 
 # dict_list = []
 # repair_record_dict_list = []
-jsonfile_name = "cd /fast_api_demo/jsonfile.json"
-members_jsonfile = "cd /fast_api_demo/members.json"
-# jsonfile_name = "jsonfile.json"
+jsonfile_name = "./jsonfile.json"
+members_jsonfile = "./members.json"
 
 # if the exe just in current dir
 # print("abspath.: ", os.path.abspath("."))
