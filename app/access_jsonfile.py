@@ -1,6 +1,8 @@
 import json
 import os
 
+print(os.path.getcwd())
+
 # dict_list = []
 # repair_record_dict_list = []
 jsonfile_name = "cd /fast_api_demo/jsonfile.json"
