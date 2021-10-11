@@ -33,6 +33,9 @@ def test_send_mail():
         except Exception as e:
             print("Error message: ", e)
 
+
+test_send_mail()
+
 # def send_mail():
 #     demo_info = '測試發送 mail json 附件'
 #
