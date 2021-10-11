@@ -1,6 +1,6 @@
 import json
 import os
-from send_email import send_mail
+# from send_email import send_mail
 
 # dict_list = []
 # repair_record_dict_list = []
