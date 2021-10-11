@@ -1,6 +1,6 @@
 import json
 import os
-# from send_email import send_mail
+from send_email import test_send_mail
 
 # dict_list = []
 # repair_record_dict_list = []
@@ -24,7 +24,7 @@ def write_members_jsonfile(member_model_list):
         json_object_list = json.dumps(json_dic_list, indent=4)
         jsonfile.write(json_object_list)
         # jsonfile.close()
-        # send_mail()
+        test_send_mail()
         return json_dic_list
 
 
