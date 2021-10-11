@@ -39,9 +39,9 @@ def send_mail():
         # part_attach1.add_header('Content-Disposition', 'attachment', filename=jsonfile_name)  # 為附件命名
         # content.attach(part_attach1)  # 新增附件
 
-        part_attach2 = MIMEApplication(open(members_jsonfile, 'rb').read())  # 開啟附件
-        part_attach2.add_header('Content-Disposition', 'attachment', filename=members_jsonfile)  # 為附件命名
-        content.attach(part_attach2)  # 新增附件
+        # part_attach2 = MIMEApplication(open(members_jsonfile, 'rb').read())  # 開啟附件
+        # part_attach2.add_header('Content-Disposition', 'attachment', filename=members_jsonfile)  # 為附件命名
+        # content.attach(part_attach2)  # 新增附件
 
         host_server = "smtp.gmail.com"
         host_port = "587"
