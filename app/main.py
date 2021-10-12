@@ -97,67 +97,6 @@ class Member(BaseModel):
     priority: int
 
 
-# member_array = [
-#     {"account": "admin", "alias": "慈暉工程師", "password": "admin", "priority": 0},
-#     {"account": "hjps", "alias": "後庄國小", "password": "hjps", "priority": 1},
-#     {"account": "hnps", "alias": "惠農國小", "password": "hnps", "priority": 1},
-#     {"account": "ssps", "alias": "新生國小", "password": "ssps", "priority": 1},
-#     {"account": "rhes", "alias": "榮華國小", "password": "rhes", "priority": 1},
-#     {"account": "ftps", "alias": "富田國小", "password": "ftps", "priority": 1},
-#     {"account": "jyps", "alias": "佳義國小", "password": "jyps", "priority": 1},
-#     {"account": "mdps", "alias": "牡丹國小", "password": "mdps", "priority": 1},
-#     {"account": "gses", "alias": "高士國小", "password": "gses", "priority": 1},
-#     {"account": "mlbh", "alias": "牡林分校", "password": "mlbh", "priority": 1},
-#     {"account": "ccjhs", "alias": "車城國中", "password": "ccjhs", "priority": 1},
-#     {"account": "cces", "alias": "車城國小", "password": "cces", "priority": 1},
-#     {"account": "lgps", "alias": "里港國小", "password": "lgps", "priority": 1},
-#     {"account": "tkps", "alias": "土庫國小", "password": "tkps", "priority": 1},
-#     {"account": "ytes", "alias": "玉田國小", "password": "ytes", "priority": 1},
-#     {"account": "jdjh", "alias": "佳冬國中", "password": "jdjh", "priority": 1},
-#     {"account": "cyps", "alias": "羌園國小", "password": "cyps", "priority": 1},
-#     {"account": "yges", "alias": "玉光國小", "password": "yges", "priority": 1},
-#     {"account": "welps", "alias": "文樂國小", "password": "welps", "priority": 1},
-#     {"account": "dkjh", "alias": "東港國中", "password": "dkjh", "priority": 1},
-#     {"account": "hbps", "alias": "海濱國小", "password": "hbps", "priority": 1},
-#     {"account": "dtes", "alias": "大潭國小", "password": "dtes", "priority": 1},
-#     {"account": "fkps", "alias": "楓港國小", "password": "fkps", "priority": 1},
-#     {"account": "flhs", "alias": "枋寮高中", "password": "flhs", "priority": 1},
-#     {"account": "jsps", "alias": "建興國小", "password": "jsps", "priority": 1},
-#     {"account": "dhps", "alias": "東海國小", "password": "dhps", "priority": 1},
-#     {"account": "lpjh", "alias": "林邊國中", "password": "lpjh", "priority": 1},
-#     {"account": "rhps", "alias": "仁和國小", "password": "rhps", "priority": 1},
-#     {"account": "cfps", "alias": "崎峰國小", "password": "cfps", "priority": 1},
-#     {"account": "sulps", "alias": "水利國小", "password": "sulps", "priority": 1},
-#     {"account": "csps", "alias": "長興國小", "password": "csps", "priority": 1},
-#     {"account": "njjh", "alias": "南州國中", "password": "njjh", "priority": 1},
-#     {"account": "njps", "alias": "南州國小", "password": "njps", "priority": 1},
-#     {"account": "dtjh", "alias": "大同高中", "password": "dtjh", "priority": 1},
-#     {"account": "hsps", "alias": "鶴聲國小", "password": "hsps", "priority": 1},
-#     {"account": "hcjh", "alias": "恆春國中", "password": "hcjh", "priority": 1},
-#     {"account": "chyps", "alias": "僑勇國小", "password": "chyps", "priority": 1},
-#     {"account": "dpps", "alias": "大平國小", "password": "dpps", "priority": 1},
-#     {"account": "kdes", "alias": "崁頂國小", "password": "kdes", "priority": 1},
-#     {"account": "kdps", "alias": "港東國小", "password": "kdps", "priority": 1},
-#     {"account": "snps", "alias": "新南國小", "password": "snps", "priority": 1},
-#     {"account": "spjh", "alias": "新埤國中", "password": "spjh", "priority": 1},
-#     {"account": "spes", "alias": "新埤國小", "password": "spes", "priority": 1},
-#     {"account": "dcps", "alias": "大成國小", "password": "dcps", "priority": 1},
-#     {"account": "syjh", "alias": "新園國中", "password": "syjh", "priority": 1},
-#     {"account": "sjes", "alias": "仙吉國小", "password": "sjes", "priority": 1},
-#     {"account": "wyps", "alias": "瓦磘國小", "password": "wyps", "priority": 1},
-#     {"account": "dles", "alias": "丹路國小", "password": "dles", "priority": 1},
-#     {"account": "nses", "alias": "內獅國小", "password": "nses", "priority": 1},
-#     {"account": "sjps", "alias": "新庄國小", "password": "sjps", "priority": 1},
-#     {"account": "sses", "alias": "新興國小", "password": "sses", "priority": 1},
-#     {"account": "shes", "alias": "興化國小", "password": "shes", "priority": 1},
-#     {"account": "jlps", "alias": "竹林國小", "password": "jlps", "priority": 1},
-#     {"account": "chsps", "alias": "赤山國小", "password": "chsps", "priority": 1},
-#     {"account": "mjjhs", "alias": "滿州國中", "password": "mjjhs", "priority": 1},
-#     {"account": "kcjhs", "alias": "光春國中", "password": "kcjhs", "priority": 1},
-#     {"account": "wutps", "alias": "霧臺國小", "password": "wutps", "priority": 1},
-#     {"account": "lgbn", "alias": "勵古百合分校", "password": "lgbn", "priority": 1}
-# ]
-
 member_array = [
     {"id": 1, "account": "admin", "alias": "慈暉工程師", "password": "admin", "priority": 0},
     {"id": 2, "account": "hjps", "alias": "後庄國小", "password": "hjps", "priority": 1},
@@ -312,7 +251,6 @@ repair_records = []
 def write_default_members(
     member_model_list: List[Member]
 ):
-    test_send_mail()
     return access_jsonfile.write_members_jsonfile(member_model_list)
 
 
