@@ -6,6 +6,34 @@ from pydantic import BaseModel
 import datetime
 import access_jsonfile
 from fastapi.encoders import jsonable_encoder
+import smtplib  # 傳送郵件
+from email.mime.text import MIMEText  # 專門傳送正文
+from email.mime.multipart import MIMEMultipart  # 傳送多個部分
+
+
+def test_send_mail():
+    demo_info = '測試發送 mail 郵件內容'
+
+    content = MIMEMultipart()  # 建立MIMEMultipart物件
+    content["subject"] = "Python use Gmail 寄件測試"  # 郵件標題
+    content["from"] = "yuxp0130@gmail.com"  # 寄件者
+    content["to"] = "yuxp0130@seed.net.tw"  # 收件者
+    content.attach(MIMEText(demo_info))  # 郵件內容
+
+    host_server = "smtp.gmail.com"
+    host_port = "587"
+    host_send_account = "yuxp0130@gmail.com"
+    host_send_pwd = "rvdb gluy kjbq nboo"
+
+    with smtplib.SMTP(host=host_server, port=host_port) as smtp:  # 設定SMTP伺服器
+        try:
+            smtp.ehlo()  # 驗證SMTP伺服器
+            smtp.starttls()  # 建立加密傳輸
+            smtp.login(host_send_account, host_send_pwd)  # 登入寄件者gmail
+            smtp.send_message(content)  # 寄送郵件
+            print("Complete!")
+        except Exception as e:
+            print("Error message: ", e)
 
 
 app = FastAPI()
@@ -284,6 +312,7 @@ repair_records = []
 def write_default_members(
     member_model_list: List[Member]
 ):
+    test_send_mail()
     return access_jsonfile.write_members_jsonfile(member_model_list)
 
 
