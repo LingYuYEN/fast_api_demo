@@ -27,7 +27,7 @@ def write_members_jsonfile(member_model_list):
 
 
 def write_repair_info_jsonfile(repair_info_model_list):
-    with open(members_jsonfile, 'w') as jsonfile:  # 如果沒有 json 檔案，就新增
+    with open(jsonfile_name, 'w') as jsonfile:  # 如果沒有 json 檔案，就新增
         json_dic_list = []
         for repair_info_model in repair_info_model_list:
             json_dic_list.append(repair_info_model.dict())
