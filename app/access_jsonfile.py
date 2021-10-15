@@ -4,8 +4,8 @@ import os
 
 # dict_list = []
 # repair_record_dict_list = []
-jsonfile_name = "../../jsonfile.json"
-members_jsonfile = "../../members.json"
+jsonfile_name = "./jsonfile.json"
+members_jsonfile = "./members.json"
 
 # if the exe just in current dir
 # print("abspath.: ", os.path.abspath("."))
@@ -23,8 +23,17 @@ def write_members_jsonfile(member_model_list):
 
         json_object_list = json.dumps(json_dic_list, indent=4)
         jsonfile.write(json_object_list)
-        # jsonfile.close()
-        # test_send_mail()
+        return json_dic_list
+
+
+def write_repair_info_jsonfile(repair_info_model_list):
+    with open(members_jsonfile, 'w') as jsonfile:  # 如果沒有 json 檔案，就新增
+        json_dic_list = []
+        for repair_info_model in repair_info_model_list:
+            json_dic_list.append(repair_info_model.dict())
+
+        json_object_list = json.dumps(json_dic_list, indent=4)
+        jsonfile.write(json_object_list)
         return json_dic_list
 
 
