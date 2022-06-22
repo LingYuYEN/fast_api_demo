@@ -2,7 +2,7 @@ FROM tiangolo/uvicorn-gunicorn-fastapi:python3.7
 
 COPY ./app /app
 
-#FROM tiangolo/uvicorn-gunicorn:python3.8
+#FROM tiangolo/uvicorn-gunicorn:python3.7
 #
 #LABEL maintainer="Sebastian Ramirez <tiangolo@gmail.com>"
 #
