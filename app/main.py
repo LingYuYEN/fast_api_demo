@@ -357,7 +357,7 @@ dl_repair_records = []
 
 @app.get("/dl_users")
 def get_dl_user():
-    return township_info_array
+    return dl_township_info_array
 
 
 @app.get("/dl_users/{township}")
