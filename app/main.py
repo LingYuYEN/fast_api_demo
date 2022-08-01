@@ -6,6 +6,7 @@ from pydantic import BaseModel
 import datetime
 import access_jsonfile
 import access_dl_jsonfile
+from model import dl_township_info_array
 from fastapi.encoders import jsonable_encoder
 
 app = FastAPI()
@@ -347,6 +348,8 @@ def write_default_members(
 ):
     return access_jsonfile.write_repair_info_jsonfile(repair_info_list)
 
+# =========================================================================================================
+
 
 dl_repair_infos = []
 dl_repair_records = []
@@ -362,7 +365,7 @@ def get_dl_user_from_township(
         township: str
 ):
     school_array = []
-    for township_info in township_info_array:
+    for township_info in dl_township_info_array:
         if township_info.township == township:
             school_array.append(township_info.school)
 
@@ -391,7 +394,6 @@ def post_dl_change_password(
             break
         else:
             member_register = None
-            # return {'message': 'Put has been updated successfully'}
 
     if member_register is None:
         return None
@@ -404,7 +406,6 @@ def post_dl_change_password(
 def post_dl_login(
         login: Login
 ):
-    # global user_account_array
     token = ''
 
     username = login.username
@@ -450,7 +451,6 @@ async def post_dl_repair_info(
     repair_info_dict['id'] = repair_infos_len + 1
     repair_infos.append(repair_info_dict)
     access_dl_jsonfile.write_dl_jsonfile(repair_info_dict)
-    # return repair_info_dict
     return access_dl_jsonfile.load_dl_jsonfile()
 
 
