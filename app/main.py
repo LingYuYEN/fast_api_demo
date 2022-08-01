@@ -365,9 +365,9 @@ def get_dl_user_from_township(
         township: str
 ):
     school_array = []
-    for township_info in dl_township_info_array:
-        if township_info.township == township:
-            school_array.append(township_info.school)
+    for dl_township_info in dl_township_info_array:
+        if dl_township_info.township == township:
+            school_array.append(dl_township_info.school)
 
     if school_array:
         return school_array
