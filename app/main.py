@@ -7,7 +7,8 @@ import datetime
 import access_jsonfile
 import access_dl_jsonfile
 from model import dl_township_info_array
-from fastapi.encoders import jsonable_encoder
+from send_email import send_mail
+
 
 app = FastAPI()
 
@@ -356,7 +357,13 @@ async def post_repair_info(
     repair_info_dict['id'] = repair_infos_len + 1
     repair_infos.append(repair_info_dict)
     access_jsonfile.write_jsonfile(repair_info_dict)
-    # return repair_info_dict
+    send_mail(
+        "ruruwu1127@gmail.com",
+        "yuxp0130@gmail.com, fish33@swell.com.tw",
+        repair_info_dict['school'],
+        "申告學校：" + str(repair_info_dict['school']) + "\n申告內容：" + str(
+            repair_info_dict['repair_description']) + "\n聯絡電話：" + str(repair_info_dict['tel'] + "\n\n\n鶴小案報修系統郵件通知")
+    )
     return access_jsonfile.load_jsonfile()
 
 # repair_record_dict_list = []
