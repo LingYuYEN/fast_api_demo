@@ -516,6 +516,13 @@ async def post_dl_repair_info(
     repair_info_dict['id'] = repair_infos_len + 1
     repair_infos.append(repair_info_dict)
     access_dl_jsonfile.write_dl_jsonfile(repair_info_dict)
+    send_mail(
+        "ruruwu1127@gmail.com",
+        "yuxp0130@gmail.com, fish33@swell.com.tw",
+        repair_info_dict['school'],
+        "申告學校：" + str(repair_info_dict['school']) + "\n申告內容：" + str(
+            repair_info_dict['repair_description']) + "\n聯絡電話：" + str(repair_info_dict['tel'] + "\n\n\n校園智慧網路優化案報修系統郵件通知")
+    )
     return access_dl_jsonfile.load_dl_jsonfile()
 
 
