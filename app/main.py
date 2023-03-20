@@ -407,7 +407,7 @@ aa_repair_records = []
 
 
 @app.get("/aa_users")
-def get_dl_user():
+def get_aa_user():
     return aa_township_info_array
 
 
@@ -428,7 +428,7 @@ def get_aa_user_from_township(
 
 @app.get("/aa_members")
 def get_aa_members():
-    return access_aa_jsonfile.load_dl_members_jsonfile()
+    return access_aa_jsonfile.load_aa_members_jsonfile()
 
 
 @app.post("/aa_repair_infos/aa_change_password")
