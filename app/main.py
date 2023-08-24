@@ -1,16 +1,17 @@
-from typing import Optional, List
+from typing import List
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
-from pydantic import BaseModel
 import datetime
 import access_jsonfile
 import access_dl_jsonfile
 import access_aa_jsonfile
+import model
 from model import township_info_array
 from model import dl_township_info_array
 from model import aa_township_info_array
 from send_email import send_mail
+from app.routes.hpps import hpps_router
 
 
 app = FastAPI()
@@ -32,46 +33,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-
-class TownshipInfo:
-    def __init__(self, id, township, school):
-        self.id = id
-        self.township = township
-        self.school = school
-
-
-class Login(BaseModel):
-    username: str
-    password: str
-
-
-class RepairRecord(BaseModel):
-    id: int
-    record_time: str
-    record_info: str
-    record_user: str
-
-
-class RepairInfo(BaseModel):
-    id: int
-    school: str
-    name: str
-    tel: str
-    device_type: str
-    repair_description: str
-    start_time: str
-    end_time: Optional[str]
-    status: str = '未接案'
-    repair_record: Optional[List[RepairRecord]]
-
-
-class Member(BaseModel):
-    id: int
-    account: str
-    password: str
-    alias: str
-    priority: int
 
 
 datetime_dt = datetime.datetime.today()  # 獲得當地時間
@@ -132,7 +93,7 @@ def post_change_password(
 
 @app.post("/login")
 def post_login(
-        login: Login
+        login: model.Login
 ):
     # global user_account_array
     token = ''
@@ -168,7 +129,7 @@ def get_selected_info(
 
 @app.post("/repair_infos")
 async def post_repair_info(
-        repair_info: RepairInfo
+        repair_info: model.RepairInfo
 ):
     repair_info_dict = repair_info.dict()
     global repair_infos
@@ -195,7 +156,7 @@ async def post_repair_info(
 @app.put("/repair_infos/{selected_id}")
 def put_repair_info(
         selected_id: int,
-        repair_record: RepairRecord
+        repair_record: model.RepairRecord
 ):
     global repair_infos
     repair_infos = access_jsonfile.load_jsonfile()
@@ -225,14 +186,14 @@ def put_repair_info_end_time(
 
 @app.post("/write_default_members")
 def write_default_members(
-    member_model_list: List[Member]
+    member_model_list: List[model.Member]
 ):
     return access_jsonfile.write_members_jsonfile(member_model_list)
 
 
 @app.post("/write_default_repair_infos")
 def write_default_members(
-    repair_info_list: List[RepairInfo]
+    repair_info_list: List[model.RepairInfo]
 ):
     return access_jsonfile.write_repair_info_jsonfile(repair_info_list)
 
@@ -296,7 +257,7 @@ def post_dl_change_password(
 
 @app.post("/dl_login")
 def post_dl_login(
-        login: Login
+        login: model.Login
 ):
     token = ''
 
@@ -331,7 +292,7 @@ def get_dl_selected_info(
 
 @app.post("/dl_repair_infos")
 async def post_dl_repair_info(
-        repair_info: RepairInfo
+        repair_info: model.RepairInfo
 ):
     repair_info_dict = repair_info.dict()
     global repair_infos
@@ -356,7 +317,7 @@ async def post_dl_repair_info(
 @app.put("/dl_repair_infos/{selected_id}")
 def put_dl_repair_info(
         selected_id: int,
-        repair_record: RepairRecord
+        repair_record: model.RepairRecord
 ):
     global repair_infos
     repair_infos = access_dl_jsonfile.load_dl_jsonfile()
@@ -385,14 +346,14 @@ def put_dl_repair_info_end_time(
 
 @app.post("/dl_write_default_members")
 def dl_write_default_members(
-    member_model_list: List[Member]
+    member_model_list: List[model.Member]
 ):
     return access_dl_jsonfile.write_dl_members_jsonfile(member_model_list)
 
 
 @app.post("/dl_write_default_repair_infos")
 def dl_write_default_members(
-    repair_info_list: List[RepairInfo]
+    repair_info_list: List[model.RepairInfo]
 ):
     return access_dl_jsonfile.write_dl_repair_info_jsonfile(repair_info_list)
 
@@ -455,7 +416,7 @@ def post_aa_change_password(
 
 @app.post("/aa_login")
 def post_aa_login(
-        login: Login
+        login: model.Login
 ):
     token = ''
 
@@ -490,7 +451,7 @@ def get_aa_selected_info(
 
 @app.post("/aa_repair_infos")
 async def post_aa_repair_info(
-        repair_info: RepairInfo
+        repair_info: model.RepairInfo
 ):
     repair_info_dict = repair_info.dict()
     global repair_infos
@@ -515,7 +476,7 @@ async def post_aa_repair_info(
 @app.put("/aa_repair_infos/{selected_id}")
 def put_aa_repair_info(
         selected_id: int,
-        repair_record: RepairRecord
+        repair_record: model.RepairRecord
 ):
     global repair_infos
     repair_infos = access_aa_jsonfile.load_aa_jsonfile()
@@ -544,17 +505,24 @@ def put_aa_repair_info_end_time(
 
 @app.post("/aa_write_default_members")
 def aa_write_default_members(
-    member_model_list: List[Member]
+    member_model_list: List[model.Member]
 ):
     return access_aa_jsonfile.write_aa_members_jsonfile(member_model_list)
 
 
 @app.post("/aa_write_default_repair_infos")
 def aa_write_default_members(
-    repair_info_list: List[RepairInfo]
+    repair_info_list: List[model.RepairInfo]
 ):
     return access_aa_jsonfile.write_aa_repair_info_jsonfile(repair_info_list)
 
+
+@app.get("/aa====================================================================")
+def aa_分隔線():
+    return ""
+
+
+app.include_router(hpps_router, tags=['和平國小案'])
 
 if __name__ == '__main__':
     uvicorn.run('main:app', host="0.0.0.0", port=5000, log_level="info", reload=True, debug=True, workers=1)

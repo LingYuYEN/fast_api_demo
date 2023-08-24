@@ -1,8 +1,45 @@
+from pydantic import BaseModel
+from typing import Optional, List
+
+
 class TownshipInfo:
     def __init__(self, id, township, school):
         self.id = id
         self.township = township
         self.school = school
+
+
+class Login(BaseModel):
+    username: str
+    password: str
+
+
+class RepairRecord(BaseModel):
+    id: int
+    record_time: str
+    record_info: str
+    record_user: str
+
+
+class RepairInfo(BaseModel):
+    id: int
+    school: str
+    name: str
+    tel: str
+    device_type: str
+    repair_description: str
+    start_time: str
+    end_time: Optional[str]
+    status: str = '未接案'
+    repair_record: Optional[List[RepairRecord]]
+
+
+class Member(BaseModel):
+    id: int
+    account: str
+    password: str
+    alias: str
+    priority: int
 
 
 township_info_array = [
@@ -583,4 +620,60 @@ aa_township_info_array = [
     TownshipInfo(218, "崁頂鄉", "南榮國中"),
     TownshipInfo(219, "屏東市", "教師研習中心"),
     TownshipInfo(220, "屏東市", "資教中心")
+]
+
+hpps_township_info_array = [
+    TownshipInfo(1, "屏東市", "鶴聲國中"),
+    TownshipInfo(2, "長治鄉", "長治國中 "),
+    TownshipInfo(3, "麟洛鄉", "麟洛國中"),
+    TownshipInfo(4, "里港鄉", "里港國中"),
+    TownshipInfo(5, "鹽埔鄉", "鹽埔國中"),
+    TownshipInfo(6, "竹田鄉", "竹田國中"),
+    TownshipInfo(7, "潮州鎮", "潮州國中"),
+    TownshipInfo(8, "屏東市", "海豐國小"),
+    TownshipInfo(9, "屏東市", "復興國小"),
+    TownshipInfo(10, "屏東市", "忠孝國小"),
+    TownshipInfo(11, "屏東市", "和平國小"),
+    TownshipInfo(12, "屏東市", "瑞光國小"),
+    TownshipInfo(13, "屏東市", "崇蘭國小"),
+    TownshipInfo(14, "潮州鎮", "潮昇國小"),
+    TownshipInfo(15, "潮州鎮", "潮和國小"),
+    TownshipInfo(16, "東港鎮", "以栗國小"),
+    TownshipInfo(17, "崁頂鄉", "南灣分校"),
+    TownshipInfo(18, "恆春鎮", "墾丁國小"),
+    TownshipInfo(19, "高樹鄉", "鵝鑾分校"),
+    TownshipInfo(20, "萬丹鄉", "興華國小"),
+    TownshipInfo(21, "萬丹鄉", "社皮國小"),
+    TownshipInfo(22, "萬丹鄉", "四維國小"),
+    TownshipInfo(23, "長治鄉", "繁華國小"),
+    TownshipInfo(24, "長治鄉", "德協國小"),
+    TownshipInfo(25, "麟洛鄉", "麟洛國小"),
+    TownshipInfo(26, "九如鄉", "三多國小"),
+    TownshipInfo(27, "鹽埔鄉", "新圍國小"),
+    TownshipInfo(28, "鹽埔鄉", "彭厝國小"),
+    TownshipInfo(29, "高樹鄉", "高樹國小"),
+    TownshipInfo(30, "高樹鄉", "大路關國中小(國小部)"),
+    TownshipInfo(31, "萬巒鄉", "五溝國小"),
+    TownshipInfo(32, "萬巒鄉", "佳佐國小"),
+    TownshipInfo(33, "屏東市", "中興分校"),
+    TownshipInfo(34, "內埔鄉", "泰安國小"),
+    TownshipInfo(35, "內埔鄉", "東勢國小"),
+    TownshipInfo(36, "內埔鄉", "隘寮國小"),
+    TownshipInfo(37, "南州鄉", "溪北國小"),
+    TownshipInfo(38, "滿州鄉", "長樂國小"),
+    TownshipInfo(39, "滿州鄉", "永港國小"),
+    TownshipInfo(40, "三地門鄉", "青山國小"),
+    TownshipInfo(41, "三地門鄉", "青葉國小"),
+    TownshipInfo(42, "來義鄉", "來義國小"),
+    TownshipInfo(43, "來義鄉", "南和國小"),
+    TownshipInfo(44, "春日鄉", "力里國小"),
+    TownshipInfo(45, "潮州鎮", "潮南國小"),
+    TownshipInfo(46, "潮州鎮", "潮東國小"),
+    TownshipInfo(47, "高樹鄉", "舊寮國小"),
+    TownshipInfo(48, "竹田鄉", "竹田國小"),
+    TownshipInfo(49, "竹田鄉", "西勢國小"),
+    TownshipInfo(50, "新埤鄉", "餉潭國小"),
+    TownshipInfo(51, "泰武鄉", "萬安國小"),
+    TownshipInfo(52, "春日鄉", "古華國小"),
+
 ]

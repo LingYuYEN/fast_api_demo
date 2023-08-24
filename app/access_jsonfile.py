@@ -8,13 +8,6 @@ import os
 jsonfile_name = "./jsonfile.json"
 members_jsonfile = "./members.json"
 
-# if the exe just in current dir
-# print("abspath.: ", os.path.abspath("."))
-# print("abspath..: ", os.path.abspath(".."))
-# print("abspath./: ", os.path.abspath("./"))
-# print("abspath../: ", os.path.abspath("../"))
-# print(jsonfile_name, os.path.abspath(jsonfile_name))
-
 
 def write_members_jsonfile(member_model_list):
     with open(members_jsonfile, 'w') as jsonfile:  # 如果沒有 json 檔案，就新增
