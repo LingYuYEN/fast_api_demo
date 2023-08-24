@@ -43,12 +43,12 @@ repair_infos = []
 repair_records = []
 
 
-@app.get("/users")
+@app.get("/users", tags=['鶴小案'])
 def get_user():
     return township_info_array
 
 
-@app.get("/users/{township}")
+@app.get("/users/{township}", tags=['鶴小案'])
 def get_user_from_township(
         township: str
 ):
@@ -63,12 +63,12 @@ def get_user_from_township(
         return "請選擇正確的鄉鎮市區"
 
 
-@app.get("/members")
+@app.get("/members", tags=['鶴小案'])
 def get_members():
     return access_jsonfile.load_members_jsonfile()
 
 
-@app.post("/repair_infos/change_password")
+@app.post("/repair_infos/change_password", tags=['鶴小案'])
 def post_change_password(
         account: str,
         password: str,
@@ -91,7 +91,7 @@ def post_change_password(
         return {'message': 'Put has been updated successfully'}
 
 
-@app.post("/login")
+@app.post("/login", tags=['鶴小案'])
 def post_login(
         login: model.Login
 ):
@@ -105,18 +105,17 @@ def post_login(
     for member in member_list:
         if username == member['account'] and password == member['password']:
             return {'account': member['account'], 'alias': member['alias'], 'priority': member['priority']}
-            break
         else:
             token = "未取得 token"
     return token
 
 
-@app.get("/repair_infos")
+@app.get("/repair_infos", tags=['鶴小案'])
 async def get_repair_infos():
     return access_jsonfile.load_jsonfile()
 
 
-@app.get("/repair_infos/{selected_id}")
+@app.get("/repair_infos/{selected_id}", tags=['鶴小案'])
 def get_selected_info(
         selected_id: int
 ):
@@ -127,7 +126,7 @@ def get_selected_info(
     return None
 
 
-@app.post("/repair_infos")
+@app.post("/repair_infos", tags=['鶴小案'])
 async def post_repair_info(
         repair_info: model.RepairInfo
 ):
@@ -153,7 +152,7 @@ async def post_repair_info(
 # repair_record_dict_list = []
 
 
-@app.put("/repair_infos/{selected_id}")
+@app.put("/repair_infos/{selected_id}", tags=['鶴小案'])
 def put_repair_info(
         selected_id: int,
         repair_record: model.RepairRecord
@@ -166,7 +165,7 @@ def put_repair_info(
     return {'message': 'Put has been updated successfully'}
 
 
-@app.put("/repair_infos/{selected_id}/detail")
+@app.put("/repair_infos/{selected_id}/detail", tags=['鶴小案'])
 def put_repair_info(
         selected_id: int,
         repair_status: str
@@ -175,7 +174,7 @@ def put_repair_info(
     return {'message': 'Put has been updated successfully'}
 
 
-@app.put("/repair_infos/{selected_id}/end_time")
+@app.put("/repair_infos/{selected_id}/end_time", tags=['鶴小案'])
 def put_repair_info_end_time(
         selected_id: int,
         end_time: str
@@ -184,36 +183,30 @@ def put_repair_info_end_time(
     return {'message': 'Put has been updated successfully'}
 
 
-@app.post("/write_default_members")
+@app.post("/write_default_members", tags=['鶴小案'])
 def write_default_members(
     member_model_list: List[model.Member]
 ):
     return access_jsonfile.write_members_jsonfile(member_model_list)
 
 
-@app.post("/write_default_repair_infos")
+@app.post("/write_default_repair_infos", tags=['鶴小案'])
 def write_default_members(
     repair_info_list: List[model.RepairInfo]
 ):
     return access_jsonfile.write_repair_info_jsonfile(repair_info_list)
 
 
-@app.get("/====================================================================")
-def 分隔線():
-    return ""
-# =========================================================================================================
-
-
 dl_repair_infos = []
 dl_repair_records = []
 
 
-@app.get("/dl_users")
+@app.get("/dl_users", tags=['數位學習精進方案(無線案)'])
 def get_dl_user():
     return dl_township_info_array
 
 
-@app.get("/dl_users/{township}")
+@app.get("/dl_users/{township}", tags=['數位學習精進方案(無線案)'])
 def get_dl_user_from_township(
         township: str
 ):
@@ -228,12 +221,12 @@ def get_dl_user_from_township(
         return "請選擇正確的鄉鎮市區"
 
 
-@app.get("/dl_members")
+@app.get("/dl_members", tags=['數位學習精進方案(無線案)'])
 def get_dl_members():
     return access_dl_jsonfile.load_dl_members_jsonfile()
 
 
-@app.post("/dl_repair_infos/dl_change_password")
+@app.post("/dl_repair_infos/dl_change_password", tags=['數位學習精進方案(無線案)'])
 def post_dl_change_password(
         account: str,
         password: str,
@@ -255,7 +248,7 @@ def post_dl_change_password(
         return {'message': 'Put has been updated successfully'}
 
 
-@app.post("/dl_login")
+@app.post("/dl_login", tags=['數位學習精進方案(無線案)'])
 def post_dl_login(
         login: model.Login
 ):
@@ -268,18 +261,17 @@ def post_dl_login(
     for member in member_list:
         if username == member['account'] and password == member['password']:
             return {'account': member['account'], 'alias': member['alias'], 'priority': member['priority']}
-            break
         else:
             token = "未取得 token"
     return token
 
 
-@app.get("/dl_repair_infos")
+@app.get("/dl_repair_infos", tags=['數位學習精進方案(無線案)'])
 async def get_dl_repair_infos():
     return access_dl_jsonfile.load_dl_jsonfile()
 
 
-@app.get("/dl_repair_infos/{selected_id}")
+@app.get("/dl_repair_infos/{selected_id}", tags=['數位學習精進方案(無線案)'])
 def get_dl_selected_info(
         selected_id: int
 ):
@@ -290,7 +282,7 @@ def get_dl_selected_info(
     return None
 
 
-@app.post("/dl_repair_infos")
+@app.post("/dl_repair_infos", tags=['數位學習精進方案(無線案)'])
 async def post_dl_repair_info(
         repair_info: model.RepairInfo
 ):
@@ -314,7 +306,7 @@ async def post_dl_repair_info(
     return access_dl_jsonfile.load_dl_jsonfile()
 
 
-@app.put("/dl_repair_infos/{selected_id}")
+@app.put("/dl_repair_infos/{selected_id}", tags=['數位學習精進方案(無線案)'])
 def put_dl_repair_info(
         selected_id: int,
         repair_record: model.RepairRecord
@@ -326,7 +318,7 @@ def put_dl_repair_info(
     return {'message': 'Put has been updated successfully'}
 
 
-@app.put("/dl_repair_infos/{selected_id}/detail")
+@app.put("/dl_repair_infos/{selected_id}/detail", tags=['數位學習精進方案(無線案)'])
 def put_dl_repair_info(
         selected_id: int,
         repair_status: str
@@ -335,7 +327,7 @@ def put_dl_repair_info(
     return {'message': 'Put has been updated successfully'}
 
 
-@app.put("/dl_repair_infos/{selected_id}/end_time")
+@app.put("/dl_repair_infos/{selected_id}/end_time", tags=['數位學習精進方案(無線案)'])
 def put_dl_repair_info_end_time(
         selected_id: int,
         end_time: str
@@ -344,35 +336,30 @@ def put_dl_repair_info_end_time(
     return {'message': 'Put has been updated successfully'}
 
 
-@app.post("/dl_write_default_members")
+@app.post("/dl_write_default_members", tags=['數位學習精進方案(無線案)'])
 def dl_write_default_members(
     member_model_list: List[model.Member]
 ):
     return access_dl_jsonfile.write_dl_members_jsonfile(member_model_list)
 
 
-@app.post("/dl_write_default_repair_infos")
+@app.post("/dl_write_default_repair_infos", tags=['數位學習精進方案(無線案)'])
 def dl_write_default_members(
     repair_info_list: List[model.RepairInfo]
 ):
     return access_dl_jsonfile.write_dl_repair_info_jsonfile(repair_info_list)
 
 
-@app.get("/dl====================================================================")
-def dl_分隔線():
-    return ""
-
-
 aa_repair_infos = []
 aa_repair_records = []
 
 
-@app.get("/aa_users")
+@app.get("/aa_users", tags=['AP 新增案'])
 def get_aa_user():
     return aa_township_info_array
 
 
-@app.get("/aa_users/{township}")
+@app.get("/aa_users/{township}", tags=['AP 新增案'])
 def get_aa_user_from_township(
         township: str
 ):
@@ -387,12 +374,12 @@ def get_aa_user_from_township(
         return "請選擇正確的鄉鎮市區"
 
 
-@app.get("/aa_members")
+@app.get("/aa_members", tags=['AP 新增案'])
 def get_aa_members():
     return access_aa_jsonfile.load_aa_members_jsonfile()
 
 
-@app.post("/aa_repair_infos/aa_change_password")
+@app.post("/aa_repair_infos/aa_change_password", tags=['AP 新增案'])
 def post_aa_change_password(
         account: str,
         password: str,
@@ -414,7 +401,7 @@ def post_aa_change_password(
         return {'message': 'Put has been updated successfully'}
 
 
-@app.post("/aa_login")
+@app.post("/aa_login", tags=['AP 新增案'])
 def post_aa_login(
         login: model.Login
 ):
@@ -427,18 +414,17 @@ def post_aa_login(
     for member in member_list:
         if username == member['account'] and password == member['password']:
             return {'account': member['account'], 'alias': member['alias'], 'priority': member['priority']}
-            break
         else:
             token = "未取得 token"
     return token
 
 
-@app.get("/aa_repair_infos")
+@app.get("/aa_repair_infos", tags=['AP 新增案'])
 async def get_aa_repair_infos():
     return access_aa_jsonfile.load_aa_jsonfile()
 
 
-@app.get("/aa_repair_infos/{selected_id}")
+@app.get("/aa_repair_infos/{selected_id}", tags=['AP 新增案'])
 def get_aa_selected_info(
         selected_id: int
 ):
@@ -449,7 +435,7 @@ def get_aa_selected_info(
     return None
 
 
-@app.post("/aa_repair_infos")
+@app.post("/aa_repair_infos", tags=['AP 新增案'])
 async def post_aa_repair_info(
         repair_info: model.RepairInfo
 ):
@@ -473,7 +459,7 @@ async def post_aa_repair_info(
     return access_aa_jsonfile.load_aa_jsonfile()
 
 
-@app.put("/aa_repair_infos/{selected_id}")
+@app.put("/aa_repair_infos/{selected_id}", tags=['AP 新增案'])
 def put_aa_repair_info(
         selected_id: int,
         repair_record: model.RepairRecord
@@ -485,7 +471,7 @@ def put_aa_repair_info(
     return {'message': 'Put has been updated successfully'}
 
 
-@app.put("/aa_repair_infos/{selected_id}/detail")
+@app.put("/aa_repair_infos/{selected_id}/detail", tags=['AP 新增案'])
 def put_aa_repair_info(
         selected_id: int,
         repair_status: str
@@ -494,7 +480,7 @@ def put_aa_repair_info(
     return {'message': 'Put has been updated successfully'}
 
 
-@app.put("/aa_repair_infos/{selected_id}/end_time")
+@app.put("/aa_repair_infos/{selected_id}/end_time", tags=['AP 新增案'])
 def put_aa_repair_info_end_time(
         selected_id: int,
         end_time: str
@@ -503,26 +489,25 @@ def put_aa_repair_info_end_time(
     return {'message': 'Put has been updated successfully'}
 
 
-@app.post("/aa_write_default_members")
+@app.post("/aa_write_default_members", tags=['AP 新增案'])
 def aa_write_default_members(
     member_model_list: List[model.Member]
 ):
     return access_aa_jsonfile.write_aa_members_jsonfile(member_model_list)
 
 
-@app.post("/aa_write_default_repair_infos")
+@app.post("/aa_write_default_repair_infos", tags=['AP 新增案'])
 def aa_write_default_members(
     repair_info_list: List[model.RepairInfo]
 ):
     return access_aa_jsonfile.write_aa_repair_info_jsonfile(repair_info_list)
 
 
-@app.get("/aa====================================================================")
-def aa_分隔線():
-    return ""
-
-
 app.include_router(hpps_router, tags=['和平國小案'])
 
+
 if __name__ == '__main__':
-    uvicorn.run('main:app', host="0.0.0.0", port=5000, log_level="info", reload=True, debug=True, workers=1)
+    uvicorn.run('main:app', host="127.0.0.1", port=5000, log_level="info", reload=True, workers=1)
+
+# if __name__ == '__main__':
+#     uvicorn.run('main:app', host="0.0.0.0", port=5000, log_level="info", reload=True, debug=True, workers=1)
