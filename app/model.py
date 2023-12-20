@@ -675,5 +675,6 @@ hpps_township_info_array = [
     TownshipInfo(50, "新埤鄉", "餉潭國小"),
     TownshipInfo(51, "泰武鄉", "萬安國小"),
     TownshipInfo(52, "春日鄉", "古華國小"),
-
+    TownshipInfo(53, "屏東市", "明正國中"),
+    TownshipInfo(54, "滿州鄉", "滿州國小"),
 ]
